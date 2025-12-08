@@ -1,0 +1,42 @@
+[
+  {
+    "role": "Data Scientist",
+    "ideal_skills": ["python", "pandas", "numpy", "scikit-learn", "tensorflow", "pytorch", "sql", "statistics", "data visualization"]
+  },
+  {
+    "role": "Machine Learning Engineer",
+    "ideal_skills": ["python", "ml ops", "tensorflow", "pytorch", "docker", "kubernetes", "aws", "feature engineering", "model deployment"]
+  },
+  {
+    "role": "Data Engineer",
+    "ideal_skills": ["python", "sql", "spark", "airflow", "etl", "aws", "kafka", "hadoop", "data pipelines"]
+  },
+  {
+    "role": "Backend Developer",
+    "ideal_skills": ["python", "django", "fastapi", "flask", "rest", "graphql", "postgresql", "redis", "docker", "kubernetes"]
+  },
+  {
+    "role": "Frontend Developer",
+    "ideal_skills": ["javascript", "typescript", "react", "next.js", "css", "html", "redux", "webpack", "testing library"]
+  },
+  {
+    "role": "DevOps Engineer",
+    "ideal_skills": ["docker", "kubernetes", "aws", "terraform", "ansible", "ci/cd", "linux", "monitoring", "prometheus", "grafana"]
+  },
+  {
+    "role": "Cloud Engineer",
+    "ideal_skills": ["aws", "azure", "gcp", "terraform", "cloudformation", "docker", "kubernetes", "networking", "security"]
+  },
+  {
+    "role": "Mobile Developer",
+    "ideal_skills": ["react native", "flutter", "swift", "kotlin", "android", "ios", "mobile ui", "firebase", "graphql"]
+  },
+  {
+    "role": "Security Engineer",
+    "ideal_skills": ["security", "networking", "iam", "vulnerability", "siem", "aws", "azure", "python", "threat modeling"]
+  },
+  {
+    "role": "Product Manager",
+    "ideal_skills": ["product strategy", "roadmap", "stakeholder management", "analytics", "user research", "agile", "sql", "a/b testing"]
+  }
+]
