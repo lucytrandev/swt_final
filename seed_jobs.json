@@ -1,42 +1,422 @@
 [
   {
     "role": "Data Scientist",
-    "ideal_skills": ["python", "pandas", "numpy", "scikit-learn", "tensorflow", "pytorch", "sql", "statistics", "data visualization"]
+    "description": "Analyze complex datasets to extract actionable insights and build predictive models. Develop machine learning algorithms to solve business problems. Create data visualizations and present findings to stakeholders. Collaborate with engineering teams to deploy models into production. Conduct statistical analysis and A/B testing to drive data-driven decisions.",
+    "ideal_skills": [
+      "python",
+      "pandas",
+      "numpy",
+      "scikit-learn",
+      "tensorflow",
+      "pytorch",
+      "sql",
+      "statistics",
+      "data visualization",
+      "machine learning",
+      "deep learning",
+      "jupyter",
+      "matplotlib",
+      "seaborn",
+      "r"
+    ]
   },
   {
     "role": "Machine Learning Engineer",
-    "ideal_skills": ["python", "ml ops", "tensorflow", "pytorch", "docker", "kubernetes", "aws", "feature engineering", "model deployment"]
+    "description": "Design, develop, and deploy machine learning models at scale. Build MLOps pipelines for model training, testing, and deployment. Optimize model performance and monitor production systems. Work with large datasets and distributed computing frameworks. Implement feature engineering and data preprocessing workflows. Collaborate with data scientists to productionize models.",
+    "ideal_skills": [
+      "python",
+      "mlops",
+      "tensorflow",
+      "pytorch",
+      "docker",
+      "kubernetes",
+      "aws",
+      "feature engineering",
+      "model deployment",
+      "spark",
+      "airflow",
+      "monitoring",
+      "ci/cd",
+      "azure",
+      "gcp"
+    ]
   },
   {
     "role": "Data Engineer",
-    "ideal_skills": ["python", "sql", "spark", "airflow", "etl", "aws", "kafka", "hadoop", "data pipelines"]
+    "description": "Build and maintain scalable data pipelines and ETL processes. Design data infrastructure and architecture for large-scale data processing. Optimize data workflows and ensure data quality and reliability. Work with distributed systems and big data technologies. Collaborate with data scientists and analysts to provide clean, accessible data. Implement data governance and security best practices.",
+    "ideal_skills": [
+      "python",
+      "sql",
+      "spark",
+      "airflow",
+      "etl",
+      "aws",
+      "kafka",
+      "hadoop",
+      "data pipelines",
+      "postgresql",
+      "nosql",
+      "redis",
+      "snowflake",
+      "databricks",
+      "data modeling"
+    ]
   },
   {
     "role": "Backend Developer",
-    "ideal_skills": ["python", "django", "fastapi", "flask", "rest", "graphql", "postgresql", "redis", "docker", "kubernetes"]
+    "description": "Design and implement server-side application logic and APIs. Build scalable, high-performance backend systems and microservices. Develop RESTful and GraphQL APIs for frontend consumption. Manage databases and optimize query performance. Implement authentication, authorization, and security best practices. Write clean, maintainable, and well-tested code. Deploy applications using containerization and orchestration.",
+    "ideal_skills": [
+      "python",
+      "django",
+      "fastapi",
+      "flask",
+      "rest api",
+      "graphql",
+      "postgresql",
+      "redis",
+      "docker",
+      "kubernetes",
+      "mongodb",
+      "microservices",
+      "aws",
+      "git",
+      "testing"
+    ]
   },
   {
     "role": "Frontend Developer",
-    "ideal_skills": ["javascript", "typescript", "react", "next.js", "css", "html", "redux", "webpack", "testing library"]
+    "description": "Build responsive and interactive user interfaces for web applications. Implement modern frontend architectures using component-based frameworks. Optimize application performance and user experience. Work closely with designers to implement pixel-perfect designs. Write clean, maintainable JavaScript/TypeScript code. Implement state management and handle API integration. Ensure cross-browser compatibility and accessibility standards.",
+    "ideal_skills": [
+      "javascript",
+      "typescript",
+      "react",
+      "next.js",
+      "css",
+      "html",
+      "redux",
+      "webpack",
+      "testing library",
+      "vue",
+      "angular",
+      "sass",
+      "responsive design",
+      "rest api",
+      "git"
+    ]
+  },
+  {
+    "role": "Full Stack Developer",
+    "description": "Develop both frontend and backend components of web applications. Build end-to-end features from database to user interface. Design and implement RESTful APIs and integrate with frontend frameworks. Manage application deployment and CI/CD pipelines. Work across the entire technology stack to deliver complete solutions. Collaborate with cross-functional teams to define and implement features.",
+    "ideal_skills": [
+      "javascript",
+      "typescript",
+      "react",
+      "node.js",
+      "python",
+      "django",
+      "postgresql",
+      "mongodb",
+      "rest api",
+      "docker",
+      "aws",
+      "git",
+      "html",
+      "css",
+      "redux"
+    ]
   },
   {
     "role": "DevOps Engineer",
-    "ideal_skills": ["docker", "kubernetes", "aws", "terraform", "ansible", "ci/cd", "linux", "monitoring", "prometheus", "grafana"]
+    "description": "Design and implement CI/CD pipelines for automated deployment. Manage cloud infrastructure and containerized applications. Monitor system performance and implement observability solutions. Automate infrastructure provisioning using Infrastructure as Code. Ensure high availability, scalability, and security of production systems. Collaborate with development teams to optimize deployment processes and resolve production issues.",
+    "ideal_skills": [
+      "docker",
+      "kubernetes",
+      "aws",
+      "terraform",
+      "ansible",
+      "ci/cd",
+      "linux",
+      "monitoring",
+      "prometheus",
+      "grafana",
+      "jenkins",
+      "gitlab",
+      "bash",
+      "python",
+      "networking"
+    ]
   },
   {
     "role": "Cloud Engineer",
-    "ideal_skills": ["aws", "azure", "gcp", "terraform", "cloudformation", "docker", "kubernetes", "networking", "security"]
+    "description": "Design and implement cloud-native architectures on AWS, Azure, or GCP. Manage cloud infrastructure and optimize costs. Implement security best practices and compliance requirements. Build automated deployment pipelines and infrastructure as code. Monitor cloud resources and optimize performance. Migrate legacy applications to cloud platforms. Ensure disaster recovery and high availability.",
+    "ideal_skills": [
+      "aws",
+      "azure",
+      "gcp",
+      "terraform",
+      "cloudformation",
+      "docker",
+      "kubernetes",
+      "networking",
+      "security",
+      "iam",
+      "lambda",
+      "serverless",
+      "monitoring",
+      "cost optimization",
+      "python"
+    ]
+  },
+  {
+    "role": "Site Reliability Engineer (SRE)",
+    "description": "Ensure reliability, availability, and performance of production systems. Implement monitoring, alerting, and incident response procedures. Design and build automation tools to reduce manual operations. Conduct capacity planning and performance optimization. Lead incident response and postmortem analysis. Collaborate with development teams to improve system reliability. Manage on-call rotations and resolve production issues.",
+    "ideal_skills": [
+      "kubernetes",
+      "docker",
+      "linux",
+      "monitoring",
+      "prometheus",
+      "grafana",
+      "python",
+      "bash",
+      "ci/cd",
+      "aws",
+      "terraform",
+      "incident management",
+      "observability",
+      "performance tuning",
+      "troubleshooting"
+    ]
   },
   {
     "role": "Mobile Developer",
-    "ideal_skills": ["react native", "flutter", "swift", "kotlin", "android", "ios", "mobile ui", "firebase", "graphql"]
+    "description": "Develop native or cross-platform mobile applications for iOS and Android. Implement responsive and intuitive mobile user interfaces. Integrate with backend APIs and third-party services. Optimize application performance and battery usage. Implement offline functionality and data synchronization. Conduct mobile app testing and debugging. Publish apps to App Store and Google Play. Follow mobile development best practices and design guidelines.",
+    "ideal_skills": [
+      "react native",
+      "flutter",
+      "swift",
+      "kotlin",
+      "android",
+      "ios",
+      "mobile ui",
+      "firebase",
+      "graphql",
+      "rest api",
+      "xcode",
+      "android studio",
+      "testing",
+      "app deployment",
+      "git"
+    ]
   },
   {
     "role": "Security Engineer",
-    "ideal_skills": ["security", "networking", "iam", "vulnerability", "siem", "aws", "azure", "python", "threat modeling"]
+    "description": "Design and implement security measures to protect systems and data. Conduct vulnerability assessments and penetration testing. Monitor security incidents and respond to threats. Implement security best practices and compliance requirements. Review code for security vulnerabilities and recommend fixes. Design secure network architectures and access controls. Conduct security audits and risk assessments.",
+    "ideal_skills": [
+      "security",
+      "networking",
+      "iam",
+      "vulnerability assessment",
+      "siem",
+      "aws",
+      "azure",
+      "python",
+      "threat modeling",
+      "penetration testing",
+      "firewalls",
+      "encryption",
+      "compliance",
+      "incident response",
+      "security auditing"
+    ]
   },
   {
     "role": "Product Manager",
-    "ideal_skills": ["product strategy", "roadmap", "stakeholder management", "analytics", "user research", "agile", "sql", "a/b testing"]
+    "description": "Define product vision and strategy aligned with business goals. Develop product roadmaps and prioritize features based on user needs and business value. Collaborate with engineering, design, and stakeholders to deliver products. Conduct user research and gather customer feedback. Analyze product metrics and make data-driven decisions. Lead product launches and go-to-market strategies. Communicate product updates and progress to stakeholders.",
+    "ideal_skills": [
+      "product strategy",
+      "roadmap",
+      "stakeholder management",
+      "analytics",
+      "user research",
+      "agile",
+      "sql",
+      "a/b testing",
+      "jira",
+      "data analysis",
+      "communication",
+      "prioritization",
+      "market research",
+      "product analytics",
+      "presentation"
+    ]
+  },
+  {
+    "role": "Data Analyst",
+    "description": "Analyze business data to identify trends and insights. Create reports and dashboards to visualize key metrics. Work with stakeholders to understand business questions and requirements. Perform statistical analysis and hypothesis testing. Clean and prepare data for analysis. Build automated reporting solutions. Present findings and recommendations to business teams. Support data-driven decision making across the organization.",
+    "ideal_skills": [
+      "sql",
+      "excel",
+      "tableau",
+      "power bi",
+      "python",
+      "data visualization",
+      "statistics",
+      "data analysis",
+      "pandas",
+      "business intelligence",
+      "reporting",
+      "dashboard",
+      "analytics",
+      "data cleaning",
+      "presentation skills"
+    ]
+  },
+  {
+    "role": "Business Intelligence Analyst",
+    "description": "Design and develop business intelligence solutions and dashboards. Build data models and ETL processes for reporting. Create interactive visualizations to communicate insights. Work with business stakeholders to define KPIs and metrics. Analyze business performance and identify improvement opportunities. Implement self-service BI tools for business users. Ensure data accuracy and consistency across reports.",
+    "ideal_skills": [
+      "sql",
+      "tableau",
+      "power bi",
+      "data modeling",
+      "etl",
+      "business intelligence",
+      "data warehouse",
+      "analytics",
+      "excel",
+      "python",
+      "reporting",
+      "dashboard design",
+      "data visualization",
+      "stakeholder management",
+      "dax"
+    ]
+  },
+  {
+    "role": "QA Engineer / Test Engineer",
+    "description": "Design and implement test strategies and test plans. Develop automated test scripts and frameworks. Perform manual and automated testing of applications. Identify, document, and track software defects. Conduct regression, integration, and performance testing. Collaborate with developers to ensure code quality. Implement CI/CD test automation pipelines. Ensure applications meet quality standards before release.",
+    "ideal_skills": [
+      "testing",
+      "automation",
+      "selenium",
+      "python",
+      "java",
+      "cypress",
+      "jest",
+      "api testing",
+      "ci/cd",
+      "test planning",
+      "bug tracking",
+      "jira",
+      "quality assurance",
+      "performance testing",
+      "git"
+    ]
+  },
+  {
+    "role": "Solutions Architect",
+    "description": "Design end-to-end technical solutions for complex business problems. Create architecture diagrams and technical documentation. Evaluate technologies and recommend best practices. Work with stakeholders to understand requirements and constraints. Design scalable, secure, and cost-effective solutions. Lead technical discussions and architectural reviews. Ensure alignment between business needs and technical implementation.",
+    "ideal_skills": [
+      "solution design",
+      "architecture",
+      "aws",
+      "azure",
+      "system design",
+      "microservices",
+      "cloud computing",
+      "technical documentation",
+      "stakeholder management",
+      "api design",
+      "security",
+      "scalability",
+      "integration",
+      "communication",
+      "leadership"
+    ]
+  },
+  {
+    "role": "Database Administrator (DBA)",
+    "description": "Manage and maintain database systems for optimal performance. Monitor database health and troubleshoot issues. Implement backup, recovery, and disaster recovery procedures. Optimize database queries and schema design. Ensure database security and access controls. Perform database upgrades and migrations. Capacity planning and performance tuning. Collaborate with developers on database design.",
+    "ideal_skills": [
+      "sql",
+      "postgresql",
+      "mysql",
+      "mongodb",
+      "database administration",
+      "performance tuning",
+      "backup recovery",
+      "database security",
+      "replication",
+      "high availability",
+      "database design",
+      "troubleshooting",
+      "oracle",
+      "sql server",
+      "scripting"
+    ]
+  },
+  {
+    "role": "AI Research Engineer",
+    "description": "Conduct research on cutting-edge AI and machine learning techniques. Develop novel algorithms and models for complex problems. Implement and experiment with state-of-the-art architectures. Publish research papers and contribute to open-source projects. Collaborate with research teams on innovative AI solutions. Prototype and evaluate new approaches. Stay current with latest AI research and trends.",
+    "ideal_skills": [
+      "python",
+      "pytorch",
+      "tensorflow",
+      "deep learning",
+      "machine learning",
+      "research",
+      "nlp",
+      "computer vision",
+      "reinforcement learning",
+      "transformers",
+      "neural networks",
+      "mathematics",
+      "statistics",
+      "paper writing",
+      "experimentation"
+    ]
+  },
+  {
+    "role": "Network Engineer",
+    "description": "Design, implement, and maintain network infrastructure. Configure routers, switches, and firewalls. Monitor network performance and troubleshoot connectivity issues. Implement network security measures and policies. Plan and execute network upgrades and migrations. Ensure high availability and redundancy. Document network configurations and procedures. Collaborate with security teams on network protection.",
+    "ideal_skills": [
+      "networking",
+      "cisco",
+      "routing",
+      "switching",
+      "firewalls",
+      "tcp/ip",
+      "vpn",
+      "dns",
+      "network security",
+      "troubleshooting",
+      "linux",
+      "network monitoring",
+      "load balancing",
+      "wan",
+      "lan"
+    ]
+  },
+  {
+    "role": "Technical Writer",
+    "description": "Create comprehensive technical documentation for products and APIs. Write user guides, tutorials, and release notes. Document software architecture and system designs. Collaborate with engineers and product teams to understand features. Maintain and update documentation repositories. Create code examples and sample applications. Ensure documentation is clear, accurate, and user-friendly.",
+    "ideal_skills": [
+      "technical writing",
+      "documentation",
+      "api documentation",
+      "markdown",
+      "git",
+      "communication",
+      "editing",
+      "content management",
+      "jira",
+      "confluence",
+      "software documentation",
+      "user guides",
+      "tutorials",
+      "attention to detail",
+      "research"
+    ]
   }
 ]
