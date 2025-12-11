@@ -7,6 +7,8 @@ streamlit
 requests
 spacy
 scikit-learn
-PyPDF2
+pdfplumber
 python-docx
 python-multipart
+rank_bm25
+pandas

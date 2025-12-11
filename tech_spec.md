@@ -1,132 +1,207 @@
-# Technical Specification: AI-Driven Resume Analyzer
+# Technical Specification: Smart Resume Analyzer & Job Recommendation System
 
-## 1. Problem Overview
-Recruiters currently face significant challenges in manually screening thousands of resumes. This process is time-consuming, inconsistent, and prone to bias. The goal of this project is to build an intelligent, local-first system that automates the initial screening process by analyzing resumes against job descriptions, extracting key skills, and providing compatibility scores and job recommendations.
+## 1. Overview
+The **Smart Resume Analyzer** is a local-first web application designed to help users optimize their resumes for specific job descriptions. It leverages Natural Language Processing (NLP) to parse resumes, extract key entities (names, emails, skills), and compute similarity scores against job descriptions. It also provides role recommendations based on a seeded database of common tech roles.
 
-## 2. User Flow
-```mermaid
-graph TD
-    A[Start] --> B[Upload Resume (PDF/DOCX)]
-    B --> C[Input Job Description]
-    C --> D[Click 'Analyze']
-    D --> E{Processing}
-    E -->|Parse Resume| F[Extract Skills & Experience]
-    E -->|Parse Job| G[Extract Required Skills]
-    F & G --> H[Calculate Compatibility Score]
-    H --> I[Display Results]
-    I --> J[Show Compatibility %]
-    I --> K[Show Missing Skills]
-    I --> L[Recommend Alternative Roles]
-    I --> M[Save Profile to Database]
-```
+## 2. System Architecture
 
-## 3. System Architecture
-The system will be a local web application composed of three main layers:
+The system follows a standard 3-tier architecture:
+1.  **Frontend**: Streamlit (Python-based UI)
+2.  **Backend**: FastAPI (Python REST API)
+3.  **Database**: MongoDB (Document Store)
 
-*   **Frontend**: Streamlit (Python) for the user interface.
-*   **Backend**: FastAPI (Python) for business logic, resume parsing, and scoring.
-*   **Database**: MongoDB for storing candidate profiles and job data.
-*   **AI/ML Engine**:
-    *   `spaCy`: For Named Entity Recognition (NER) to extract skills and experience.
-    *   `scikit-learn`: For TF-IDF/Cosine Similarity scoring.
-    *   `LLM (Optional/Integrated)`: For generating role recommendations and advanced matching.
+![System Architecture](docs/screenshots/architecture.png)
 
-```mermaid
-graph LR
-    User((Recruiter)) -- Interacts --> UI[Streamlit UI]
-    UI -- HTTP Requests --> API[FastAPI Backend]
-    API -- Reads/Writes --> DB[(MongoDB)]
-    API -- Uses --> NLP[spaCy / scikit-learn / LLM]
-```
+## 3. Component Details
 
-## 4. MongoDB Schema Design
+### 3.1 Frontend (Streamlit)
+-   **File**: `app.py`
+-   **Port**: Default `8501`
+-   **Responsibilities**:
+    -   File Upload (PDF/DOCX)
+    -   Job Description Input form
+    -   Displaying Analysis Results (Score, Skills Match/Gap)
+    -   Visualizing Role Recommendations
 
-### Collection: `candidates`
-Stores parsed candidate information.
+### 3.2 Backend (FastAPI)
+-   **File**: `main.py`
+-   **Port**: Default `8000`
+-   **Responsibilities**:
+    -   **Parsing**: Extracts text and entities from resumes (`utils.py`).
+    -   **Analysis**: Computes TF-IDF Cosine Similarity between Resume and JD.
+    -   **Data Persistence**: Stores candidates and seeds job roles.
+    -   **Endpoints**:
+        -   `POST /upload_resume`: Upload and parse resume.
+        -   `POST /analyze`: Compare resume text against a JD.
+
+### 3.3 Database (MongoDB)
+-   **Database Name**: `smart_resume` (configurable via `MONGODB_DB`)
+-   **Collections**:
+    -   `candidates`: Stores parsed resume data.
+    -   `jobs`: Stores seeded job roles for recommendations.
+
+## 4. Data Models
+
+### 4.1 Candidate Object (MongoDB `candidates` collection)
 ```json
 {
   "_id": "ObjectId",
   "name": "String",
   "email": "String",
-  "phone": "String",
   "skills": ["String"],
-  "experience_years": "Float",
-  "education": "String",
-  "resume_text": "String",
-  "parsed_at": "DateTime"
+  "resume_text": "String"
 }
 ```
 
-### Collection: `jobs`
-Stores job descriptions for matching.
+### 4.2 Job Object (MongoDB `jobs` collection)
 ```json
 {
   "_id": "ObjectId",
-  "title": "String",
-  "department": "String",
+  "role": "String",
   "description": "String",
-  "required_skills": ["String"],
-  "created_at": "DateTime"
+  "ideal_skills": ["String"]
 }
 ```
 
-### Collection: `analysis_results` (Optional)
-Stores the history of matches.
-```json
-{
-  "_id": "ObjectId",
-  "candidate_id": "ObjectId",
-  "job_id": "ObjectId",
-  "compatibility_score": "Float",
-  "missing_skills": ["String"],
-  "recommended_roles": ["String"],
-  "timestamp": "DateTime"
-}
+## 5. API Specification
+
+### 5.1 Upload Resume
+-   **Endpoint**: `POST /upload_resume`
+-   **Input**: `multipart/form-data` with file (PDF or DOCX).
+-   **Output**:
+    ```json
+    {
+      "id": "candidate_id",
+      "parsed": {
+        "name": "...",
+        "email": "...",
+        "skills": ["..."],
+        "resume_text": "..."
+      },
+      "message": "Resume parsed and stored"
+    }
+    ```
+
+### 5.2 Analyze Compatibility (V2)
+-   **Endpoint**: `POST /analyze_v2`
+-   **Input**:
+    ```json
+    {
+      "resume_text": "Extracted text...",
+      "job_description_text": "Target job description..."
+    }
+    ```
+-   **Output**:
+    ```json
+    {
+      "compatibility_score": 85.5,
+      "match_level": "High Match",
+      "matched_skills": ["python", "docker"],
+      "missing_skills": ["kubernetes", "aws"],
+      "recommendations": [...],
+      "total_experience_years": 5.0,
+      "skill_experience": {"python": 5.0},
+      "sections_detected": ["skills", "experience", "projects"],
+      "repetition_penalty": 1.0,
+      "score_breakdown": {
+          "tfidf": 80.0,
+          "bm25": 85.0,
+          "jaccard": 90.0,
+          "hybrid_raw": 82.5,
+          "experience_bonus": 3.0,
+          "final": 85.5
+      }
+    }
+    ```
+
+## 6. Logic & Algorithms (Tier 2 Engine)
+
+The system uses a **weighted hybrid scoring V2** approach:
+
+1.  **Section-Aware Parsing**: 
+    -   Splits resume into weighted sections (Skills=3.0x, Experience=2.0x, Others=0.5x).
+2.  **Hybrid Similarity Calculation**:
+    -   **BM25 (45%)**: Context-aware keyword matching, normalized dynamically against a "perfect match" self-score.
+    -   **TF-IDF (30%)**: Cosine similarity for general context and vocabulary overlap.
+    -   **Jaccard (25%)**: Exact hard skill overlap ratio.
+3.  **Refinements**:
+    -   **Repetition Penalty**: Detects keyword stuffing (e.g., repeating "Java" 50 times) and applies a multiplier penalty (0.5x - 1.0x).
+    -   **Experience Bonus**: Adds score boosters (+3% to +8%) for verified years of experience.
+    -   **Corpus Expansion**: Uses `seed_jobs.json` as a background corpus to ensure BM25 IDF scores are statistically valid.
+
+## 7. System Thresholds & Constants
+
+The following thresholds define the system's decision-making logic:
+
+### 7.1 Match Levels
+| Score Range | Level |
+| :--- | :--- |
+| **70% - 100%** | High Match |
+| **50% - 69%** | Good Match |
+| **30% - 49%** | Partial Match |
+| **0% - 29%** | Needs Improvement |
+
+### 7.2 Scoring Weights (Hybrid V2)
+- **BM25**: 45% (Weight: 0.45)
+- **TF-IDF**: 30% (Weight: 0.30)
+- **Jaccard**: 25% (Weight: 0.25)
+
+### 7.3 Section Weights
+- **Skills**: 3.0x
+- **Experience / Projects**: 2.0x
+- **Certifications / Summary**: 1.5x
+- **Education**: 1.0x
+- **Other**: 0.5x
+
+### 7.4 Bonuses & Penalties
+- **Experience Bonus**:
+    - 3-5 Years: +3%
+    - 6-9 Years: +5%
+    - 10+ Years: +8%
+- **Repetition Penalty**:
+    - Keyword Frequency > 5%: Penalty Factor up to 0.5x (50% reduction)
+- **Recommendation Threshold**:
+    - Jobs must have **>= 10% compatibility** to be recommended.
+
+## 8. Setup & Run Instructions
+
+### Prerequisites
+-   **Python 3.9+** (Recommended: 3.9 - 3.11)
+-   MongoDB (running locally on port 27017)
+-   spaCy English Model (`en_core_web_sm`)
+
+### Installation
+1.  **Clone/Open Project**
+2.  **Create Virtual Environment**:
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate
+    ```
+3.  **Install Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  **Download NLP Model**:
+    ```bash
+    python -m spacy download en_core_web_sm
+    ```
+
+### Running the Application
+
+**Step 1: Start MongoDB**
+Ensure MongoDB is running.
+-   Mac: `brew services start mongodb-community`
+-   Docker: `docker run -d -p 27017:27017 mongo`
+
+**Step 2: Start Backend**
+```bash
+uvicorn main:app --reload
 ```
+*Server will start at `http://127.0.0.1:8000`*
 
-## 5. API Design
-
-### Resume Operations
-*   `POST /api/v1/resumes/upload`
-    *   **Input**: File (PDF/DOCX)
-    *   **Output**: JSON object with parsed data (skills, name, etc.) and `candidate_id`.
-
-### Analysis Operations
-*   `POST /api/v1/analysis/match`
-    *   **Input**: `{ "candidate_id": "...", "job_description": "..." }`
-    *   **Output**:
-        ```json
-        {
-          "score": 0.85,
-          "matched_skills": ["Python", "SQL"],
-          "missing_skills": ["AWS"],
-          "recommendations": ["Data Analyst", "Backend Engineer"]
-        }
-        ```
-
-## 6. Streamlit UI Wireframe
-The UI will be a single-page application with a sidebar for navigation (if needed) or a clean vertical layout.
-
-**Layout:**
-1.  **Header**: "AI Resume Analyzer"
-2.  **Input Section**:
-    *   Two columns:
-        *   **Left**: File Uploader ("Upload Resume")
-        *   **Right**: Text Area ("Paste Job Description")
-3.  **Action**: "Analyze Compatibility" Button.
-4.  **Results Section** (appears after analysis):
-    *   **Score Card**: Large metric showing Compatibility % (e.g., 85%).
-    *   **Skills Breakdown**:
-        *   Green tags for Matched Skills.
-        *   Red tags for Missing Skills.
-    *   **Recommendations**: "Based on this profile, this candidate is also a 95% fit for [Role A] and 80% fit for [Role B]."
-5.  **Database View** (Tab 2):
-    *   Table displaying recently uploaded candidates.
-
-## 7. Technology Stack
-*   **Language**: Python 3.10+
-*   **Web Framework**: Streamlit
-*   **API Framework**: FastAPI
-*   **Database**: MongoDB Community Edition
-*   **NLP/ML**: spaCy, scikit-learn, PyPDF2/pdfminer
-*   **Linting/Formatting**: Ruff
+**Step 3: Start Frontend**
+Open a new terminal, activate venv, and run:
+```bash
+streamlit run app.py
+```
+*App will open at `http://localhost:8501`*
